@@ -72,7 +72,7 @@ dcrypt encrypt --key "my_secret_key" --input "data_to_be_encrypted"
 On this example encrypted data for decryption will be get from file and result of the operation will be saved into another file:
 
 ```
-dcrypt decrypt --key "my_secret_key" --input /path/to/file.txt --output /file/where/save/encrypted/data
+dcrypt decrypt --key "my_secret_key" --input /path/to/encrypted/file.txt --output /file/where/save/decrypted/data.txt
 ```
 
 ## Security Considerations
