@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:encrypt/encrypt.dart';
 
 import '../config/strings.dart';
 
@@ -18,6 +19,10 @@ class EncryptCommand extends Command {
 
   @override
   FutureOr? run() {
-    print('run: $name');
+    final iv = IV.fromLength(16);
+    final encrypter = Encrypter(AES(Key.fromUtf8(args[Strings.keyName])));
+    final result = encrypter.encrypt(args[Strings.inputName], iv: iv);
+
+    print(result.base64);
   }
 }

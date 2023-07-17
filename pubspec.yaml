@@ -1,16 +1,15 @@
 name: dart_crypt
-description: My encryption tool written in dart language
+description: CLI application that provides encryption and decryption capabilities for your sensitive data.
 version: 0.0.1
-# repository: https://github.com/my_org/my_repo
+repository: https://github.com/rozpo/dart_crypt
 
 environment:
   sdk: ^3.0.5
 
-# Add regular dependencies here.
 dependencies:
   args: ^2.4.2
   cli_completion: ^0.3.0
-  # path: ^1.8.0
+  encrypt: ^5.0.1
 
 dev_dependencies:
   lints: ^2.0.0
