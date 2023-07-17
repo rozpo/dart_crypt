@@ -11,8 +11,10 @@ void main(List<String> arguments) {
     Strings.binDesc,
   );
 
-  runner.addCommand(EncryptCommand());
-  runner.addCommand(DecryptCommand());
+  final args = runner.parse(arguments);
+
+  runner.addCommand(EncryptCommand(args));
+  runner.addCommand(DecryptCommand(args));
 
   runner.run(arguments).catchError(
     (error) {
