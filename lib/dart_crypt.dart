@@ -36,7 +36,8 @@ mixin DartCrypt {
       valueHelp: Strings.inputValue,
       allowedHelp: {
         Strings.inputStringKey: Strings.inputStringDesc,
-        Strings.inputPathKey: Strings.inputPathDesc,
+        // TODO Missing implementation
+        // Strings.inputPathKey: Strings.inputPathDesc,
       },
       mandatory: true,
     );
@@ -94,7 +95,12 @@ mixin DartCrypt {
   }
 
   static void parse(List<String> arguments) {
-    args = runner.parse(arguments);
+    try {
+      args = runner.parse(arguments);
+    } catch (e) {
+      print(e);
+      exit(64);
+    }
   }
 
   static void run(List<String> arguments) {

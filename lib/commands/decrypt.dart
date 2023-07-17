@@ -19,14 +19,18 @@ class DecryptCommand extends Command {
 
   @override
   FutureOr? run() {
-    final iv = IV.fromLength(16);
-    final encrypter = Encrypter(AES(Key.fromUtf8(args[Strings.keyName])));
+    try {
+      final iv = IV.fromLength(16);
+      final encrypter = Encrypter(AES(Key.fromUtf8(args[Strings.keyName])));
 
-    final result = encrypter.decrypt(
-      Encrypted.fromBase64(args[Strings.inputName]),
-      iv: iv,
-    );
+      final result = encrypter.decrypt(
+        Encrypted.fromBase64(args[Strings.inputName]),
+        iv: iv,
+      );
 
-    print(result);
+      print(result);
+    } catch (e) {
+      print('$e');
+    }
   }
 }

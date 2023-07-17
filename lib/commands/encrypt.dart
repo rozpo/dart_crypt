@@ -19,10 +19,14 @@ class EncryptCommand extends Command {
 
   @override
   FutureOr? run() {
-    final iv = IV.fromLength(16);
-    final encrypter = Encrypter(AES(Key.fromUtf8(args[Strings.keyName])));
-    final result = encrypter.encrypt(args[Strings.inputName], iv: iv);
+    try {
+      final iv = IV.fromLength(16);
+      final encrypter = Encrypter(AES(Key.fromUtf8(args[Strings.keyName])));
+      final result = encrypter.encrypt(args[Strings.inputName], iv: iv);
 
-    print(result.base64);
+      print(result.base64);
+    } catch (e) {
+      print('$e');
+    }
   }
 }
