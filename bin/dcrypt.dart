@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:args/command_runner.dart';
 import 'package:dart_crypt/commands/decrypt.dart';
 import 'package:dart_crypt/commands/encrypt.dart';
@@ -12,5 +14,11 @@ void main(List<String> arguments) {
   runner.addCommand(EncryptCommand());
   runner.addCommand(DecryptCommand());
 
-  runner.run(arguments);
+  runner.run(arguments).catchError(
+    (error) {
+      if (error is! UsageException) throw error;
+      print(error);
+      exit(64);
+    },
+  );
 }
