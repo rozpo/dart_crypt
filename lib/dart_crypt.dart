@@ -26,6 +26,7 @@ mixin DartCrypt {
       abbr: Strings.keyName[0],
       help: Strings.keyDesc,
       valueHelp: Strings.keyValue,
+      mandatory: true,
     );
 
     runner.argParser.addOption(
@@ -33,6 +34,11 @@ mixin DartCrypt {
       abbr: Strings.inputName[0],
       help: Strings.inputDesc,
       valueHelp: Strings.inputValue,
+      allowedHelp: {
+        Strings.inputStringKey: Strings.inputStringDesc,
+        Strings.inputPathKey: Strings.inputPathDesc,
+      },
+      mandatory: true,
     );
 
     runner.argParser.addOption(
@@ -40,17 +46,45 @@ mixin DartCrypt {
       abbr: Strings.outputName[0],
       help: Strings.outputDesc,
       valueHelp: Strings.outputValue,
+      allowedHelp: {
+        Strings.outputConsoleKey: Strings.outputConsoleDesc,
+        Strings.outputPathKey: Strings.outputPathDesc,
+      },
+      defaultsTo: Strings.outputConsoleKey,
     );
 
     runner.argParser.addOption(
+      Strings.algorithmName,
+      abbr: Strings.algorithmName[0],
+      help: Strings.algorithmDesc,
+      valueHelp: Strings.algorithmValue,
+      allowed: [
+        Strings.algorithmAesKey,
+      ],
+      allowedHelp: {
+        Strings.algorithmAesKey: Strings.algorithmAesDesc,
+      },
+      defaultsTo: Strings.algorithmAesKey,
+    );
+
+    runner.argParser.addFlag(
+      Strings.forceName,
+      abbr: Strings.forceName[0],
+      help: Strings.forceDesc,
+      negatable: false,
+    );
+
+    runner.argParser.addFlag(
       Strings.verboseName,
       abbr: Strings.verboseName[0],
       help: Strings.verboseDesc,
+      negatable: false,
     );
 
-    runner.argParser.addOption(
+    runner.argParser.addFlag(
       Strings.versionName,
       help: Strings.versionDesc,
+      negatable: false,
     );
   }
 
