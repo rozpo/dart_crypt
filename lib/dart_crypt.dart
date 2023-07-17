@@ -36,24 +36,22 @@ mixin DartCrypt {
       valueHelp: Strings.inputValue,
       allowedHelp: {
         Strings.inputStringKey: Strings.inputStringDesc,
-        // TODO Missing implementation
-        // Strings.inputPathKey: Strings.inputPathDesc,
+        Strings.inputPathKey: Strings.inputPathDesc,
       },
       mandatory: true,
     );
 
-    // TODO Missing implementation
-    // runner.argParser.addOption(
-    //   Strings.outputName,
-    //   abbr: Strings.outputName[0],
-    //   help: Strings.outputDesc,
-    //   valueHelp: Strings.outputValue,
-    //   allowedHelp: {
-    //     Strings.outputConsoleKey: Strings.outputConsoleDesc,
-    //     Strings.outputPathKey: Strings.outputPathDesc,
-    //   },
-    //   defaultsTo: Strings.outputConsoleKey,
-    // );
+    runner.argParser.addOption(
+      Strings.outputName,
+      abbr: Strings.outputName[0],
+      help: Strings.outputDesc,
+      valueHelp: Strings.outputValue,
+      allowedHelp: {
+        Strings.outputConsoleKey: Strings.outputConsoleDesc,
+        Strings.outputPathKey: Strings.outputPathDesc,
+      },
+      defaultsTo: Strings.outputConsoleKey,
+    );
 
     // TODO Missing implementation
     // runner.argParser.addOption(

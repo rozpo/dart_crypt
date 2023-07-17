@@ -1,6 +1,6 @@
 name: dart_crypt
 description: CLI application that provides encryption and decryption capabilities for your sensitive data.
-version: 0.1.1
+version: 0.2.0
 repository: https://github.com/rozpo/dart_crypt
 
 environment:
