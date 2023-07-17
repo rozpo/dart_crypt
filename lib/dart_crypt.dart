@@ -41,51 +41,56 @@ mixin DartCrypt {
       mandatory: true,
     );
 
-    runner.argParser.addOption(
-      Strings.outputName,
-      abbr: Strings.outputName[0],
-      help: Strings.outputDesc,
-      valueHelp: Strings.outputValue,
-      allowedHelp: {
-        Strings.outputConsoleKey: Strings.outputConsoleDesc,
-        Strings.outputPathKey: Strings.outputPathDesc,
-      },
-      defaultsTo: Strings.outputConsoleKey,
-    );
+    // TODO Missing implementation
+    // runner.argParser.addOption(
+    //   Strings.outputName,
+    //   abbr: Strings.outputName[0],
+    //   help: Strings.outputDesc,
+    //   valueHelp: Strings.outputValue,
+    //   allowedHelp: {
+    //     Strings.outputConsoleKey: Strings.outputConsoleDesc,
+    //     Strings.outputPathKey: Strings.outputPathDesc,
+    //   },
+    //   defaultsTo: Strings.outputConsoleKey,
+    // );
 
-    runner.argParser.addOption(
-      Strings.algorithmName,
-      abbr: Strings.algorithmName[0],
-      help: Strings.algorithmDesc,
-      valueHelp: Strings.algorithmValue,
-      allowed: [
-        Strings.algorithmAesKey,
-      ],
-      allowedHelp: {
-        Strings.algorithmAesKey: Strings.algorithmAesDesc,
-      },
-      defaultsTo: Strings.algorithmAesKey,
-    );
+    // TODO Missing implementation
+    // runner.argParser.addOption(
+    //   Strings.algorithmName,
+    //   abbr: Strings.algorithmName[0],
+    //   help: Strings.algorithmDesc,
+    //   valueHelp: Strings.algorithmValue,
+    //   allowed: [
+    //     Strings.algorithmAesKey,
+    //   ],
+    //   allowedHelp: {
+    //     Strings.algorithmAesKey: Strings.algorithmAesDesc,
+    //   },
+    //   defaultsTo: Strings.algorithmAesKey,
+    // );
 
-    runner.argParser.addFlag(
-      Strings.forceName,
-      abbr: Strings.forceName[0],
-      help: Strings.forceDesc,
-      negatable: false,
-    );
+    // TODO Missing implementation
+    // runner.argParser.addFlag(
+    //   Strings.forceName,
+    //   abbr: Strings.forceName[0],
+    //   help: Strings.forceDesc,
+    //   negatable: false,
+    // );
 
-    runner.argParser.addFlag(
-      Strings.verboseName,
-      abbr: Strings.verboseName[0],
-      help: Strings.verboseDesc,
-      negatable: false,
-    );
+    // TODO Missing implementation
+    // runner.argParser.addFlag(
+    //   Strings.verboseName,
+    //   abbr: Strings.verboseName[0],
+    //   help: Strings.verboseDesc,
+    //   negatable: false,
+    // );
 
-    runner.argParser.addFlag(
-      Strings.versionName,
-      help: Strings.versionDesc,
-      negatable: false,
-    );
+    // TODO Missing implementation
+    // runner.argParser.addFlag(
+    //   Strings.versionName,
+    //   help: Strings.versionDesc,
+    //   negatable: false,
+    // );
   }
 
   static void parse(List<String> arguments) {

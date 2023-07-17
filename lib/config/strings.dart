@@ -1,7 +1,7 @@
 mixin Strings {
   static const String binName = 'dcrypt';
   static const String binDesc =
-      'Command-line interface application that provides encryption and decryption capabilities for your sensitive data.';
+      'CLI application that provides encryption and decryption capabilities for your sensitive data.';
 
   // encrypt command
   static const String encryptName = 'encrypt';

@@ -1,3 +1,3 @@
-## 1.0.0
+## 0.1.0
 
-- Initial version.
+- Encrypt decrypt operation for a raw text.
