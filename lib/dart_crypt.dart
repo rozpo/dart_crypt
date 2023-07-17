@@ -2,13 +2,18 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:cli_completion/cli_completion.dart';
 
 import 'commands/decrypt.dart';
 import 'commands/encrypt.dart';
 import 'config/strings.dart';
 
+class DartCryptRunner extends CompletionCommandRunner {
+  DartCryptRunner(super.executableName, super.description);
+}
+
 mixin DartCrypt {
-  static CommandRunner runner = CommandRunner(
+  static CommandRunner runner = DartCryptRunner(
     Strings.binName,
     Strings.binDesc,
   );
