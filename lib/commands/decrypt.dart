@@ -25,7 +25,6 @@ class DecryptCommand extends Command {
     try {
       Uri path = Uri.parse(args[Strings.inputName]);
       input = File(path.path).readAsStringSync();
-      input.trim();
     } catch (e) {
       if (e is FormatException || e is FileSystemException) {
         input = args[Strings.inputName];
