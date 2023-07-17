@@ -1,5 +1,10 @@
-import 'package:dart_crypt/dart_crypt.dart' as dart_crypt;
+import 'package:args/command_runner.dart';
 
 void main(List<String> arguments) {
-  print('Hello world: ${dart_crypt.calculate()}!');
+  final runner = CommandRunner(
+    'dcrypt',
+    'My encryption tool written in dart language',
+  );
+
+  runner.run(arguments);
 }
