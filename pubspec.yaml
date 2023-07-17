@@ -1,6 +1,6 @@
 name: dart_crypt
-description: A sample command-line application.
-version: 1.0.0
+description: My encryption tool written in dart language
+version: 0.0.1
 # repository: https://github.com/my_org/my_repo
 
 environment:
