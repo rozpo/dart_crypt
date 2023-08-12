@@ -84,12 +84,11 @@ mixin DartCrypt {
     //   negatable: false,
     // );
 
-    // TODO Missing implementation
-    // runner.argParser.addFlag(
-    //   Strings.versionName,
-    //   help: Strings.versionDesc,
-    //   negatable: false,
-    // );
+    runner.argParser.addFlag(
+      Strings.versionName,
+      help: Strings.versionDesc,
+      negatable: false,
+    );
   }
 
   static void parse(List<String> arguments) {
@@ -102,6 +101,11 @@ mixin DartCrypt {
   }
 
   static void run(List<String> arguments) {
+    if (shouldPrintVersion()) {
+      printVersion();
+      exit(0);
+    }
+
     runner.addCommand(EncryptCommand(args));
     runner.addCommand(DecryptCommand(args));
 
@@ -112,5 +116,24 @@ mixin DartCrypt {
         exit(64);
       },
     );
+  }
+
+  static void printVersion() {
+    print('Dcrypt v0.4.0\n');
+    print('Copyright (c) 2023 Piotr Rozponczyk');
+    print('MIT License');
+  }
+
+  static bool shouldPrintVersion() {
+    bool result = false;
+
+    for (var element in args.arguments) {
+      if (element == '--version') {
+        result = true;
+        break;
+      }
+    }
+
+    return result;
   }
 }
