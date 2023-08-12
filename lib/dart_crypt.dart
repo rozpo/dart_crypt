@@ -7,6 +7,7 @@ import 'package:cli_completion/cli_completion.dart';
 import 'commands/decrypt.dart';
 import 'commands/encrypt.dart';
 import 'config/strings.dart';
+import 'config/version.dart';
 
 class DartCryptRunner extends CompletionCommandRunner {
   DartCryptRunner(super.executableName, super.description);
