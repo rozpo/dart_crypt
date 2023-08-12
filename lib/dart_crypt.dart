@@ -119,7 +119,7 @@ mixin DartCrypt {
   }
 
   static void printVersion() {
-    print('Dcrypt v0.4.0\n');
+    print('Dcrypt ${Version.name}\n');
     print('Copyright (c) 2023 Piotr Rozponczyk');
     print('MIT License');
   }
