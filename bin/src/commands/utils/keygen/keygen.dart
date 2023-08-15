@@ -41,6 +41,9 @@ class KeygenCommand extends UtilsCommand {
     );
   }
 
+  // ====================
+  // COMMAND LOGIC
+  // ====================
   @override
   FutureOr? run() {
     Random random = Random();
@@ -60,6 +63,9 @@ class KeygenCommand extends UtilsCommand {
     }
   }
 
+  // ====================
+  // INTERNAL METHODS
+  // ====================
   int _getLengthFromArgs() {
     int defaultLength = 32;
     int result = defaultLength;
@@ -73,8 +79,7 @@ class KeygenCommand extends UtilsCommand {
   }
 
   bool _shouldSaveKeyToFile() {
-    bool result = false;
-    return result;
+    return argResults!.wasParsed('output');
   }
 
   bool _saveKeyToFile() {
