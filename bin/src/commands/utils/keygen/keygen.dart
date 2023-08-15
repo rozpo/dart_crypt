@@ -4,6 +4,8 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:errno/errno.dart';
+
 import '../../../utils/logger.dart';
 import '../utils.dart';
 
@@ -80,7 +82,12 @@ class KeygenCommand extends UtilsCommand {
     int result = defaultLength;
 
     if (argResults!.wasParsed('length')) {
-      result = int.tryParse(argResults!['length']) ?? defaultLength;
+      try {
+        result = int.parse(argResults!['length']);
+      } on FormatException {
+        Logger.error.log('Invalid key length');
+        exit(LinuxErrors.invalidArgument);
+      }
     }
 
     Logger.debug.log('Key value set to: $result');
@@ -97,9 +104,11 @@ class KeygenCommand extends UtilsCommand {
         Logger.info.log('Key saved to ${file.path}');
       } on FileSystemException {
         Logger.error.log('Save to file failed');
+        exit(LinuxErrors.readOnlyFileSystem);
       }
     } else {
       Logger.warning.log('File exists, use --force to override.');
+      exit(LinuxErrors.fileExists);
     }
   }
 }
