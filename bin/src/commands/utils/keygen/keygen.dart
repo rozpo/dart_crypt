@@ -52,16 +52,20 @@ class KeygenCommand extends UtilsCommand {
     if (_shouldSaveKeyToFile()) {
       _saveKeyToFile(msg);
     } else {
-      Logger.info.log(msg);
+      _printKeyToConsole(msg);
     }
   }
 
   // ====================
   // INTERNAL METHODS
   // ====================
+  bool _shouldSaveKeyToFile() => argResults!.wasParsed('output');
+  bool _canOverrideFile() => argResults!.wasParsed('force');
+  void _printKeyToConsole(String msg) => Logger.info.log(msg);
+
   String _generateKey() {
     Random random = Random();
-    int length = _getLengthFromArgs();
+    int length = _parseKeyLength();
     int range = 256;
 
     Uint8List uint8list = Uint8List.fromList(
@@ -71,7 +75,7 @@ class KeygenCommand extends UtilsCommand {
     return base64.encode(uint8list);
   }
 
-  int _getLengthFromArgs() {
+  int _parseKeyLength() {
     int defaultLength = 32;
     int result = defaultLength;
 
@@ -83,26 +87,19 @@ class KeygenCommand extends UtilsCommand {
     return result;
   }
 
-  bool _shouldSaveKeyToFile() {
-    return argResults!.wasParsed('output');
-  }
-
   void _saveKeyToFile(String msg) {
     File file = File(argResults!['output']);
 
+    // File not exists or --force flag is present
     if (!file.existsSync() || _canOverrideFile()) {
       try {
         file.writeAsStringSync(msg);
         Logger.info.log('Key saved to ${file.path}');
       } on FileSystemException {
-        Logger.error.log('Save failed');
+        Logger.error.log('Save to file failed');
       }
     } else {
       Logger.warning.log('File exists, use --force to override.');
     }
-  }
-
-  bool _canOverrideFile() {
-    return argResults!.wasParsed('force');
   }
 }
