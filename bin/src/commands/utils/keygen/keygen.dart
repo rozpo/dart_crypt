@@ -13,6 +13,34 @@ class KeygenCommand extends UtilsCommand {
   @override
   String get description => 'Generate random key for encryption.';
 
+  KeygenCommand() {
+    argParser.addOption(
+      'length',
+      help: 'Requested length of the key.',
+      abbr: 'l',
+      defaultsTo: '32',
+    );
+
+    argParser.addOption(
+      'output',
+      help: 'Specify the output for the keygen command result.',
+      abbr: 'o',
+      valueHelp: 'path',
+      allowedHelp: {
+        '<path>': 'Save the output to the target file.',
+        'console': 'Print the output to the console.'
+      },
+      defaultsTo: 'console',
+    );
+
+    argParser.addFlag(
+      'force',
+      help: 'Force save to output, even if the target file exists.',
+      abbr: 'f',
+      negatable: false,
+    );
+  }
+
   @override
   FutureOr? run() {
     Random random = Random();
