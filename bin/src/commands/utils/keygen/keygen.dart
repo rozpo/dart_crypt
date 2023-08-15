@@ -61,7 +61,14 @@ class KeygenCommand extends UtilsCommand {
   }
 
   int _getLengthFromArgs() {
-    int result = 32;
+    int defaultLength = 32;
+    int result = defaultLength;
+
+    if (argResults!.wasParsed('length')) {
+      result = int.tryParse(argResults!['length']) ?? defaultLength;
+    }
+
+    Logger.debug.log('Key value set to: $result');
     return result;
   }
 
