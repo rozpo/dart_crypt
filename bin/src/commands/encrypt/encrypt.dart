@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:encrypt/encrypt.dart';
 
