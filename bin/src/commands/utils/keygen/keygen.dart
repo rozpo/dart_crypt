@@ -15,12 +15,35 @@ class KeygenCommand extends UtilsCommand {
 
   @override
   FutureOr? run() {
-    String msg = base64.encode(
-      Uint8List.fromList(
-        List.generate(32, (index) => Random().nextInt(256)),
-      ),
+    Random random = Random();
+    int length = _getLengthFromArgs();
+    int range = 256;
+
+    Uint8List uint8list = Uint8List.fromList(
+      List.generate(length, (index) => random.nextInt(range)),
     );
 
-    Logger.info.log(msg);
+    String msg = base64.encode(uint8list);
+
+    if (_shouldSaveKeyToFile()) {
+      _saveKeyToFile();
+    } else {
+      Logger.info.log(msg);
+    }
+  }
+
+  int _getLengthFromArgs() {
+    int result = 32;
+    return result;
+  }
+
+  bool _shouldSaveKeyToFile() {
+    bool result = false;
+    return result;
+  }
+
+  bool _saveKeyToFile() {
+    bool result = false;
+    return result;
   }
 }
