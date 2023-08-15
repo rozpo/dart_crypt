@@ -5,6 +5,7 @@ import 'package:cli_completion/cli_completion.dart';
 
 import 'src/commands/commands.dart';
 import 'src/globals/version.dart';
+import 'src/utils/logger.dart';
 import 'src/utils/strings.dart';
 
 void main(List<String> args) {
@@ -42,6 +43,10 @@ class Dcrypt extends CompletionCommandRunner {
   @override
   ArgResults parse(Iterable<String> args) {
     for (var element in args) {
+      if (element == '--verbose' || element == '-v') {
+        Logger.setLogLevel = Logger.verbose.level;
+      }
+
       if (element == '--version') {
         Version.printVersion();
         exit(0);

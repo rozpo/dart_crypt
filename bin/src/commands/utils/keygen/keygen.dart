@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
@@ -46,18 +47,10 @@ class KeygenCommand extends UtilsCommand {
   // ====================
   @override
   FutureOr? run() {
-    Random random = Random();
-    int length = _getLengthFromArgs();
-    int range = 256;
-
-    Uint8List uint8list = Uint8List.fromList(
-      List.generate(length, (index) => random.nextInt(range)),
-    );
-
-    String msg = base64.encode(uint8list);
+    String msg = _generateKey();
 
     if (_shouldSaveKeyToFile()) {
-      _saveKeyToFile();
+      _saveKeyToFile(msg);
     } else {
       Logger.info.log(msg);
     }
@@ -66,6 +59,18 @@ class KeygenCommand extends UtilsCommand {
   // ====================
   // INTERNAL METHODS
   // ====================
+  String _generateKey() {
+    Random random = Random();
+    int length = _getLengthFromArgs();
+    int range = 256;
+
+    Uint8List uint8list = Uint8List.fromList(
+      List.generate(length, (index) => random.nextInt(range)),
+    );
+
+    return base64.encode(uint8list);
+  }
+
   int _getLengthFromArgs() {
     int defaultLength = 32;
     int result = defaultLength;
@@ -82,8 +87,22 @@ class KeygenCommand extends UtilsCommand {
     return argResults!.wasParsed('output');
   }
 
-  bool _saveKeyToFile() {
-    bool result = false;
-    return result;
+  void _saveKeyToFile(String msg) {
+    File file = File(argResults!['output']);
+
+    if (!file.existsSync() || _canOverrideFile()) {
+      try {
+        file.writeAsStringSync(msg);
+        Logger.info.log('Key saved to ${file.path}');
+      } on FileSystemException {
+        Logger.error.log('Save failed');
+      }
+    } else {
+      Logger.warning.log('File exists, use --force to override.');
+    }
+  }
+
+  bool _canOverrideFile() {
+    return argResults!.wasParsed('force');
   }
 }
