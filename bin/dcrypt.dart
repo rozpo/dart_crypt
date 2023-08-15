@@ -20,6 +20,8 @@ class Dcrypt extends CompletionCommandRunner {
   void _loadCommands() {
     addCommand(DecryptCommand());
     addCommand(EncryptCommand());
+    addCommand(KeygenCommand());
+    addCommand(UpdateCommand());
   }
 
   void _loadGlobals() {
@@ -33,13 +35,6 @@ class Dcrypt extends CompletionCommandRunner {
     argParser.addFlag(
       Strings.versionName,
       help: Strings.versionDesc,
-      negatable: false,
-    );
-
-    argParser.addFlag(
-      'silent',
-      help: 'No output',
-      abbr: 's',
       negatable: false,
     );
   }
