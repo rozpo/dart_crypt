@@ -35,6 +35,13 @@ class Dcrypt extends CompletionCommandRunner {
       help: Strings.versionDesc,
       negatable: false,
     );
+
+    argParser.addFlag(
+      'silent',
+      help: 'No output',
+      abbr: 's',
+      negatable: false,
+    );
   }
 
   @override
