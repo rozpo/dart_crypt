@@ -1,2 +1,2 @@
-export 'decrypt/decrypt.dart';
-export 'encrypt/encrypt.dart';
+export 'encryption/decrypt/decrypt.dart';
+export 'encryption/encrypt/encrypt.dart';

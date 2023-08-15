@@ -2,17 +2,20 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:args/command_runner.dart';
 import 'package:encrypt/encrypt.dart';
 
-import '../../utils/strings.dart';
+import '../../../utils/strings.dart';
+import '../encryption.dart';
 
-class DecryptCommand extends Command {
+class DecryptCommand extends EncryptionCommand {
   @override
   String get name => Strings.decryptName;
 
   @override
   String get description => Strings.decryptDesc;
+
+  @override
+  List<String> get aliases => ['d', 'de', 'dec'];
 
   @override
   FutureOr? run() {
