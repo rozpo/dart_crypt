@@ -1,7 +1,19 @@
-import 'package:dart_crypt/dart_crypt.dart';
+import 'package:cli_completion/cli_completion.dart';
 
-void main(List<String> arguments) {
-  DartCrypt.init();
-  DartCrypt.parse(arguments);
-  DartCrypt.run(arguments);
+import 'src/commands/commands.dart';
+import 'src/utils/strings.dart';
+
+void main(List<String> args) {
+  Dcrypt().run(args);
+}
+
+class Dcrypt extends CompletionCommandRunner {
+  Dcrypt()
+      : super(
+          Strings.binName,
+          Strings.binDesc,
+        ) {
+    addCommand(DecryptCommand());
+    addCommand(EncryptCommand());
+  }
 }
