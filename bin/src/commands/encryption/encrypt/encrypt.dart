@@ -26,14 +26,14 @@ class EncryptCommand extends EncryptionCommand {
       Uint8List content = File(file.path).readAsBytesSync();
 
       final encrypter =
-          Encrypter(AES(Key.fromUtf8(argResults![Strings.keyName])));
+          Encrypter(AES(Key.fromBase64(argResults![Strings.keyName])));
       result = encrypter.encryptBytes(content, iv: IV.fromLength(16));
     } catch (e) {
       if (e is FormatException || e is FileSystemException) {
         String input = argResults![Strings.inputName];
 
         final encrypter =
-            Encrypter(AES(Key.fromUtf8(argResults![Strings.keyName])));
+            Encrypter(AES(Key.fromBase64(argResults![Strings.keyName])));
         result = encrypter.encrypt(input, iv: IV.fromLength(16));
       } else {
         print(e);

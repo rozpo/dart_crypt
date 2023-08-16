@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import '../utils/strings.dart';
-
 mixin Version {
   static String _fetchInfo() {
     String result = '';

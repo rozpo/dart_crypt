@@ -2,7 +2,7 @@ name: dart_crypt
 description: CLI application that provides encryption and decryption capabilities for your sensitive data.
 # TODO Implement automatic version control system
 # While bumping the version validate integrity with lib/config/version.dart file.
-version: 0.5.0
+version: 0.5.1
 repository: https://github.com/rozpo/dart_crypt
 
 environment:
