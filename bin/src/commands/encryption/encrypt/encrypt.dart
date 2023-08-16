@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:dcli/dcli.dart';
 import 'package:encrypt/encrypt.dart';
 
 import '../../../utils/strings.dart';
@@ -20,20 +21,29 @@ class EncryptCommand extends EncryptionCommand {
   @override
   FutureOr? run() {
     late Encrypted result;
+    String key;
+
+    if (argResults!.wasParsed(Strings.keyName)) {
+      key = argResults![Strings.keyName];
+    } else {
+      key = ask(
+        'Key:',
+        hidden: true,
+        required: true,
+      );
+    }
 
     try {
       Uri file = Uri.parse(argResults![Strings.inputName]);
       Uint8List content = File(file.path).readAsBytesSync();
 
-      final encrypter =
-          Encrypter(AES(Key.fromBase64(argResults![Strings.keyName])));
+      final encrypter = Encrypter(AES(Key.fromBase64(key)));
       result = encrypter.encryptBytes(content, iv: IV.fromLength(16));
     } catch (e) {
       if (e is FormatException || e is FileSystemException) {
         String input = argResults![Strings.inputName];
 
-        final encrypter =
-            Encrypter(AES(Key.fromBase64(argResults![Strings.keyName])));
+        final encrypter = Encrypter(AES(Key.fromBase64(key)));
         result = encrypter.encrypt(input, iv: IV.fromLength(16));
       } else {
         print(e);
