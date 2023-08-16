@@ -21,6 +21,7 @@ class Dcrypt extends CompletionCommandRunner {
   void _loadCommands() {
     addCommand(DecryptCommand());
     addCommand(EncryptCommand());
+    addCommand(ChannelCommand());
     addCommand(KeygenCommand());
     addCommand(UpdateCommand());
   }
